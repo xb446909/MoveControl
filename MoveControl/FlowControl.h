@@ -1,6 +1,7 @@
 #pragma once
 #include "afxdockablepane.h"
 #include "FlowListCtrl.h"
+#include "Resource.h"
 
 class CFlowControl :
 	public CDockablePane	
@@ -17,5 +18,6 @@ public:
 
 	CFlowListCtrl m_listCtrl;
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+
 };
 

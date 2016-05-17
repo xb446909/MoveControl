@@ -33,6 +33,13 @@ int CFlowControl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	rect.SetRectEmpty();
 	m_listCtrl.Create(WS_VISIBLE | WS_CHILD | LVS_REPORT | LVS_OWNERDRAWFIXED, rect, this, 1);
 	m_listCtrl.SetExtendedStyle(m_listCtrl.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
+
+	m_listCtrl.m_imgList.Create(48, 48, ILC_COLOR32, 0, 5);
+	m_listCtrl.SetImageList(&m_listCtrl.m_imgList, LVSIL_SMALL);
+	CBitmap bmp;
+	int result = bmp.LoadBitmap(IDB_BITMAP1);
+	result = m_listCtrl.m_imgList.Add(&bmp, RGB(0, 0, 0));
+
 	m_listCtrl.InsertColumn(0, L"ÐòºÅ", LVCFMT_LEFT, 100);
 	m_listCtrl.InsertColumn(1, L"ËµÃ÷", LVCFMT_LEFT, 500);
 	CString tmpStr;

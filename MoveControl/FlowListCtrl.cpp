@@ -31,7 +31,6 @@ void CFlowListCtrl::OnNMCustomdraw(NMHDR *pNMHDR, LRESULT *pResult)
 		}
 	case CDDS_ITEMPREPAINT://如果为画ITEM之前就要进行颜色的改变
 		{	
-			//lplvdr->clrTextBk = RGB(255, 0, 0);
 			*pResult = CDRF_DODEFAULT;
 		}
 		break;
@@ -42,7 +41,7 @@ void CFlowListCtrl::OnNMCustomdraw(NMHDR *pNMHDR, LRESULT *pResult)
 void CFlowListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
 	TCHAR lpBuffer[256];
-	LV_COLUMN lvc, lvcprev;
+	LV_COLUMN lvc;
 	::ZeroMemory(&lvc, sizeof(lvc));
 	lvc.mask = LVCF_WIDTH | LVCF_FMT;
 	long hight = 0;
@@ -80,5 +79,6 @@ void CFlowListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		//CFont* pold = pDC->SelectObject(&lfont);
 		::DrawText(lpDrawItemStruct->hDC, lpBuffer, wcslen(lpBuffer), &lpDrawItemStruct->rcItem, DT_LEFT);
 		//pDC->SelectStockObject(SYSTEM_FONT) ;
+		m_imgList.Draw(pDC, 0, CPoint(0, 24), ILD_TRANSPARENT);
 	}
 }
