@@ -19,6 +19,7 @@ CFlowControl* CFlowControl::Get()
 }
 BEGIN_MESSAGE_MAP(CFlowControl, CDockablePane)
 	ON_WM_CREATE()
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
@@ -28,6 +29,30 @@ int CFlowControl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	// TODO:  Add your specialized creation code here
-
+	CRect rect;
+	rect.SetRectEmpty();
+	m_listCtrl.Create(WS_VISIBLE | WS_CHILD | LVS_REPORT | LVS_OWNERDRAWFIXED, rect, this, 1);
+	m_listCtrl.SetExtendedStyle(m_listCtrl.GetExtendedStyle() | LVS_EX_FULLROWSELECT);
+	m_listCtrl.InsertColumn(0, L"序号", LVCFMT_LEFT, 100);
+	m_listCtrl.InsertColumn(1, L"说明", LVCFMT_LEFT, 500);
+	CString tmpStr;
+	for (size_t i = 0; i < 20; i++)
+	{
+		tmpStr.Format(L"%d", i);
+		m_listCtrl.InsertItem(i, tmpStr);
+		m_listCtrl.SetItemText(i, 1, L"ITEM");
+	}
 	return 0;
+}
+
+
+void CFlowControl::OnSize(UINT nType, int cx, int cy)
+{
+	CDockablePane::OnSize(nType, cx, cy);
+
+	// TODO: 在此处添加消息处理程序代码
+	if (m_listCtrl.GetSafeHwnd())
+	{
+		m_listCtrl.SetWindowPos(NULL, 0, 0, cx, cy, SWP_NOACTIVATE | SWP_NOZORDER);
+	}
 }

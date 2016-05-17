@@ -9,5 +9,7 @@ public:
 	~CFlowListCtrl(void);
 private:
 	afx_msg void OnNMCustomdraw(NMHDR *pNMHDR, LRESULT *pResult);
+	void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
+public:
 };
 

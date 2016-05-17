@@ -16,5 +16,6 @@ public:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 
 	CFlowListCtrl m_listCtrl;
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 };
 

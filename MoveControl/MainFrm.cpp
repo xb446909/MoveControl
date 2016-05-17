@@ -110,11 +110,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 BOOL CMainFrame::CreateDockingWindows()
 {
-	if (!(CFlowControl::Get()->Create(L"流程图", this, CRect(0, 0, 200, 200), TRUE, 1, WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT| CBRS_FLOAT_MULTI)))
+	if (!(CFlowControl::Get()->Create(L"流程图", this, CRect(0, 0, 200, 200), TRUE, 1, 
+		WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_LEFT| CBRS_FLOAT_MULTI)))
 	{
 		TRACE0("未能创建流程图\n");
 		return FALSE; // 未能创建
 	}
+	return TRUE;
 }
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
